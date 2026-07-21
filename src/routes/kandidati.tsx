@@ -27,30 +27,111 @@ type Candidate = {
   photo?: string;
 };
 
-// TODO: Nahradit skutečnými kandidáty (jméno, foto, medailonek).
 const candidates: Candidate[] = [
   {
     order: 1,
-    name: "Jméno Příjmení",
+    name: "Libor Kvasnička",
     role: "Lídr kandidátky · starosta",
-    bio: "Krátký medailonek kandidáta — profesní zkušenosti, priority pro Řevnice a proč kandiduje.",
+    bio: "Podnikatel v oboru maloobchodní prodej, provozovatel pěstitelské pálenice a moštárny. Právě v zastupitelstvu pracuji 28 let, třikrát byl radním a jedno období starostou. Dlouhodobě pracuji ve finančním výboru a věnuji se financím, energetice a problematice životního prostředí.",
+    photo: "/assets/Libor Kvasnička.jpg",
   },
   {
     order: 2,
-    name: "Jméno Příjmení",
-    role: "Místostarosta",
-    bio: "Krátký medailonek kandidáta — profesní zkušenosti, priority pro Řevnice a proč kandiduje.",
+    name: "Ing. Kateřina Hlaváčková",
+    role: "Místostarostka",
+    bio: "Finanční manažerka v oboru evropských dotací. Druhé volební období působím jako zastupitelka města a členka rady. Pracuji ve finančním výboru a předsedám komisi životního prostředí. Prioritou je volnočasové vyžití pro starší děti a mládež.",
+    photo: "/assets/Kateřina Hlaváčková (Šupáčková).png",
   },
   {
     order: 3,
-    name: "Jméno Příjmení",
-    role: "Zastupitel/ka",
-    bio: "Krátký medailonek kandidáta — profesní zkušenosti, priority pro Řevnice a proč kandiduje.",
+    name: "Mgr. Martina Pražská",
+    role: "Zastupitelka",
+    bio: "Středoškolská učitelka, místopředsedkyně Mysliveckého spolku Řevnice a turistického spolku Brdské hory. Prioritou je klidný charakter našeho městečka s dostatkem zeleně, dobrá dopravní dostupnost a podpora místních spolků.",
+    photo: "/assets/Martina Pražská (Březinová).jpg",
   },
   {
     order: 4,
-    name: "Jméno Příjmení",
-    bio: "Krátký medailonek kandidáta — profesní zkušenosti, priority pro Řevnice a proč kandiduje.",
+    name: "Matěj Krofta",
+    role: "Kandidát",
+    bio: "Student Univerzity Karlovy, administrátor projektů a personalista. Zaměřuji se na oblast kultury, vzdělávání a práci s dětmi a mládeží. Chci, aby Řevnice byly pro mladé lidi lákavé a přitažlivé s kvalitní dopravou a dostupným bydlením.",
+    photo: "/assets/Matěj Krofta.jpg",
+  },
+  {
+    order: 5,
+    name: "Ing. Jan Lojda",
+    role: "Kandidát",
+    bio: "Velkým benefitem Řevnic je jedinečná okolní krajina. Snažím se zpřístupnit tyto přínosy občanům, realizoval jsem naučnou stezku Burešovka a vzdělávací akce v lese. Rád bych navázal na tuto činnost a využil své zkušenosti.",
+    photo: "/assets/Jan Lojda.jpg",
+  },
+  {
+    order: 6,
+    name: "Ing. Jakub Veselka",
+    role: "Kandidát",
+    bio: "Konzultant v oblasti energetiky, udržitelnosti budov a projektového řízení. V Řevnicích žijeme již více než osm let. Kandidaturu vnímám jako příležitost vrátit Řevnicím něco z toho, co nám za ta léta daly a přispět k jejich dalšímu rozvoji.",
+    photo: "/assets/Jakub Veselka.jpg",
+  },
+  {
+    order: 7,
+    name: "Ing. Jiří Buchal",
+    role: "Kandidát",
+    bio: "Podnikatel, investor, manažer. Žiji od narození v Řevnicích a vychovávám 4 děti. Zastupitelem jsem byl 12 let. Chci se věnovat podpoře mládeže a projektům na podporu bydlení. Řevnice potřebují omladit a vytvořit podmínky pro rodiny.",
+    photo: "/assets/Jiří Buchal.jpg",
+  },
+  {
+    order: 8,
+    name: "Bc. Ondřej Lánský",
+    role: "Kandidát",
+    bio: "Rodák ze Řevnic, věnuji se odpadovému hospodářství a ochranu přírody. Zaměřuji se na ochranu a rozvoj městských lesů, podporu biodiverzity a zadržování vody v krajině. Chci zachovat jedinečný přírodní charakter Řevnic.",
+    photo: "/assets/Ondřej Lánský.jpg",
+  },
+  {
+    order: 9,
+    name: "RNDr. Petr Čermák",
+    role: "Kandidát",
+    bio: "Fyzik a vysokoškolský pedagog na Matfyzu. V Řevnicích vedím dětské kroužky robotiky a podílím se na provozu místní robotické dílny. Chci přinést věcný, racionální a hospodárný přístup do komunální politiky.",
+    photo: "/assets/Petr Čermák.jpg",
+  },
+  {
+    order: 10,
+    name: "Milan Adam",
+    role: "Kandidát",
+    bio: "Manažer zahraničního prodeje ve společnosti Sony Music Entertainment. V Řevnicích žiji již 60 let. Město dokonale spojuje klidný život v přírodě s výhodami blízkosti Prahy. Chci zachovat Řevnice jako kvalitní bydlení pro další generace.",
+    photo: "/assets/Milan Adam.jpg",
+  },
+  {
+    order: 11,
+    name: "Karel Vyleta",
+    role: "Kandidát",
+    bio: "Prioritou je dotáhnout revitalizaci náměstí. Pozornost věnuji novému podjezdu, který pomůže zvýšit plynulost dopravy. Důležité je řešit prostor bývalé Eurovie a každodenní chod města - údržba veřejných prostranství a komunikací.",
+    photo: "/assets/Karel Vyleta.jpg",
+  },
+  {
+    order: 12,
+    name: "Ing. Roman Vejmelka",
+    role: "Kandidát",
+    bio: "Celý život se pohybuji ve stavebnictví jako projektant, stavitel i developer. Za 25 let v Řevnicích jsem vnímám krási i bolístek našeho města. Chci se zasadit o rozumný stavební rozvoj Řevnic a odmítám zakonzervování současného stavu.",
+    photo: "/assets/Roma Vejmelka.png",
+  },
+  {
+    order: 13,
+    name: "Ing. Jan Šimůnek",
+    role: "Kandidát",
+    bio: "Projektový manažer stavebně-investičních záměrů. Do Řevnic jsem se přestěhoval před 32 lety. Jedno období jsem působil v zastupitelstvu a architektonické komisi. Chci usilovat o efektivnější a rychlejší přípravu a realizaci projektů.",
+    photo: "/assets/Jan Šimůnek.jpg",
+  },
+  {
+    order: 14,
+    name: "Milan Bělohlávek",
+    role: "Kandidát",
+    bio: "Řemeslník, v Řevnicích žiji 17 let. Jako místní řemeslník znám potřeby a reálné problémy obyvatel z první ruky. Když nestojím na střeše, potkáte mě na kole nebo v horách. Chci, aby Řevnice byly bezpečným a aktivním místem pro život.",
+    photo: "/assets/Milan Bělohlávek.jpg",
+  },
+  {
+    order: 15,
+    name: "Anna Doležalová",
+    role: "Kandidátka",
+    bio: "Podnikatelka, trenérka jezdectví. V Řevnicích žiji celý svůj život, stejně jako celá moje rodina. S mou maminkou provozujeme dětskou herničku Fabiánek. Chci se zasadit o to, aby se nám tady všem žilo ještě lépe.",
+    photo: "/assets/Anna Doležalová (Karasová).jpg",
   },
 ];
 
@@ -68,7 +149,7 @@ function KandidatiPage() {
         </p>
       </header>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {candidates.map((c) => (
           <article
             key={c.order}
@@ -97,11 +178,6 @@ function KandidatiPage() {
             </div>
           </article>
         ))}
-      </div>
-
-      <div className="mt-12 rounded-xl border border-dashed border-border bg-surface p-6 text-sm text-muted-foreground">
-        Toto je zástupný obsah. Zašlete prosím jména, fotky a krátký medailonek každého kandidáta —
-        doplníme je sem.
       </div>
     </div>
   );
