@@ -169,11 +169,7 @@ const sections: Section[] = [
     id: "finance",
     icon: Coins,
     title: "Finance",
-    promised: [
-      "Nezadlužovat město",
-      "Pečlivě vybírat projekty",
-      "Hledat dotace",
-    ],
+    promised: ["Nezadlužovat město", "Pečlivě vybírat projekty", "Hledat dotace"],
     accomplished: [
       "Rozpočet stabilní, dluh klesl na 44 mil. Kč (2024)",
       "Dotace schváleny: náměstí, chodníky",
@@ -189,11 +185,7 @@ const sections: Section[] = [
     id: "culture",
     icon: Music,
     title: "Kultura, sport, volný čas",
-    promised: [
-      "Pravidla pro Lesní divadlo",
-      "Podpora sportu",
-      "Řešení fotbalového hřiště",
-    ],
+    promised: ["Pravidla pro Lesní divadlo", "Podpora sportu", "Řešení fotbalového hřiště"],
     accomplished: [
       "Lesní divadlo – pravidelná údržba, kulturní akce, spolupráce ZUŠ, nový ceník",
       "Sport dětí a mládeže – pravidelné navyšování částky do grantového systému",
@@ -208,11 +200,7 @@ const sections: Section[] = [
     id: "participation",
     icon: Users,
     title: "Zapojování veřejnosti",
-    promised: [
-      "Veřejná projednání před projekty",
-      "Otevřená radnice",
-      "Setkání s občany",
-    ],
+    promised: ["Veřejná projednání před projekty", "Otevřená radnice", "Setkání s občany"],
     accomplished: [
       "Veřejná setkání – k pavilonu, rekonstrukcím ulic a náměstí, krajinnému plánu, strategickému plánu",
       "Facebook města – spuštěn 2023",
@@ -257,9 +245,9 @@ function HodnoceniPage() {
           Hodnocení uplynulých čtyř let
         </h1>
         <p className="mt-5 text-lg text-muted-foreground">
-          Poctivé ohlédnutí za tím, co se v Řevnicích za poslední volební období povedlo, co
-          zůstává rozpracované a na čem chceme dál stavět. Detailní vyhodnocení plnění volebního
-          programu v jednotlivých oblastech.
+          Poctivé ohlédnutí za tím, co se v Řevnicích za poslední volební období povedlo, co zůstává
+          rozpracované a na čem chceme dál stavět. Detailní vyhodnocení plnění volebního programu v
+          jednotlivých oblastech.
         </p>
       </header>
 
@@ -282,9 +270,7 @@ function HodnoceniPage() {
                     {getStatusIcon(section.status)}
                     <span
                       className={`text-xs font-semibold ${
-                        section.status === "partial"
-                          ? "text-amber-700"
-                          : "text-green-700"
+                        section.status === "partial" ? "text-amber-700" : "text-green-700"
                       }`}
                     >
                       {section.statusLabel}
@@ -294,9 +280,7 @@ function HodnoceniPage() {
 
                 <div className="mt-4 space-y-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-muted-foreground">
-                      Co bylo slíbeno
-                    </h3>
+                    <h3 className="text-sm font-semibold text-muted-foreground">Co bylo slíbeno</h3>
                     <ul className="mt-2 space-y-1">
                       {section.promised.map((item) => (
                         <li
@@ -348,9 +332,9 @@ function HodnoceniPage() {
           ))}
         </div>
         <p className="mt-6 text-muted-foreground">
-          Město se zavázalo plnit konkrétní program a postupuje podle svých slibů. Některé
-          projekty se realizují pomaleji než plánováno, ale město zároveň podniklo iniciativy, které
-          program ani nezahrnoval. Pokračujeme v odpovědné správě Řevnic.
+          Město se zavázalo plnit konkrétní program a postupuje podle svých slibů. Některé projekty
+          se realizují pomaleji než plánováno, ale město zároveň podniklo iniciativy, které program
+          ani nezahrnoval. Pokračujeme v odpovědné správě Řevnic.
         </p>
       </section>
     </div>
