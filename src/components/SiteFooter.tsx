@@ -22,10 +22,26 @@ export function SiteFooter() {
         <div>
           <div className="text-sm font-semibold text-foreground">Navigace</div>
           <ul className="mt-3 space-y-2 text-sm">
-            <li><Link to="/kandidati" className="text-muted-foreground hover:text-primary">Kandidáti</Link></li>
-            <li><Link to="/hodnoceni" className="text-muted-foreground hover:text-primary">Hodnocení 2022–2026</Link></li>
-            <li><Link to="/program" className="text-muted-foreground hover:text-primary">Volební program</Link></li>
-            <li><Link to="/clanky" className="text-muted-foreground hover:text-primary">Články</Link></li>
+            <li>
+              <Link to="/kandidati" className="text-muted-foreground hover:text-primary">
+                Kandidáti
+              </Link>
+            </li>
+            <li>
+              <Link to="/hodnoceni" className="text-muted-foreground hover:text-primary">
+                Hodnocení 2022–2026
+              </Link>
+            </li>
+            <li>
+              <Link to="/program" className="text-muted-foreground hover:text-primary">
+                Volební program
+              </Link>
+            </li>
+            <li>
+              <Link to="/clanky" className="text-muted-foreground hover:text-primary">
+                Články
+              </Link>
+            </li>
           </ul>
         </div>
 

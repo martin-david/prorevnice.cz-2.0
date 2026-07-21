@@ -1,12 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Car,
-  GraduationCap,
-  Leaf,
-  Building2,
-  Landmark,
-  HeartHandshake,
-} from "lucide-react";
+import { Car, GraduationCap, Leaf, Building2, Landmark, HeartHandshake } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export const Route = createFileRoute("/program")({

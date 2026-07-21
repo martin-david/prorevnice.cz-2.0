@@ -144,8 +144,8 @@ function KandidatiPage() {
           Lidé pro Řevnice
         </h1>
         <p className="mt-5 text-lg text-muted-foreground">
-          Kandidátní listina hnutí Starostové a nezávislí pro nadcházející komunální volby v Řevnicích.
-          Spojuje nás zkušenost, znalost místa a chuť pracovat pro město.
+          Kandidátní listina hnutí Starostové a nezávislí pro nadcházející komunální volby v
+          Řevnicích. Spojuje nás zkušenost, znalost místa a chuť pracovat pro město.
         </p>
       </header>
 
