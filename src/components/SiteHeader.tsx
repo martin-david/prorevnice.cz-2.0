@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import stanLogo from "@/assets/stan-logo.png.asset.json";
+import stanLogo from "@/assets/STAN logo.png";
 
 const nav = [
   { to: "/", label: "Domů" },
@@ -18,7 +18,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <img src={stanLogo.url} alt="STAN — Starostové a nezávislí" className="h-9 w-9" />
+          <img src={stanLogo} alt="STAN — Starostové a nezávislí" className="h-9 w-9" />
           <div className="leading-tight">
             <div className="font-display text-lg font-semibold text-primary">Pro Řevnice</div>
             <div className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">

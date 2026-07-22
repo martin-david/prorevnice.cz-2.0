@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import panorama from "@/assets/panorama.jpg.asset.json";
+import panorama from "@/assets/main logo.jpg";
 import { FacebookEmbed } from "@/components/FacebookEmbed";
 import { ArrowRight, Users, ClipboardCheck, FileText, Newspaper } from "lucide-react";
 
@@ -18,8 +18,8 @@ export const Route = createFileRoute("/")({
         content: "Otevřená a odpovědná politika pro Řevnice.",
       },
       { property: "og:url", content: "/" },
-      { property: "og:image", content: panorama.url },
-      { name: "twitter:image", content: panorama.url },
+      { property: "og:image", content: panorama },
+      { name: "twitter:image", content: panorama },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -33,7 +33,7 @@ function Index() {
       <section className="relative isolate overflow-hidden">
         <div
           className="absolute inset-0 -z-10 bg-cover bg-center"
-          style={{ backgroundImage: `url(${panorama.url})` }}
+          style={{ backgroundImage: `url(${panorama})` }}
           aria-hidden
         />
         <div
