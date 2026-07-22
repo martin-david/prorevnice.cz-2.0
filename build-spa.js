@@ -7,7 +7,7 @@ const htmlContent = `<!doctype html>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to your Lovable project | prorevnice.cz-2.0</title>
+    <title>Pro Řevnice — Starostové a nezávislí</title>
     <link rel="stylesheet" href="/assets/styles-BOQJDxFH.css">
   </head>
   <body>
