@@ -12,8 +12,4 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  nitro: {
-    // Use static preset for GitHub Pages deployment
-    presets: ["static"],
-  },
 });
