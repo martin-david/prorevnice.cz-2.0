@@ -19,6 +19,7 @@ const htmlContent = `<!doctype html>
 
 const publicDir = ".output/public";
 const indexPath = path.join(publicDir, "index.html");
+const noJekyllPath = path.join(publicDir, ".nojekyll");
 
 try {
   if (!fs.existsSync(publicDir)) {
@@ -26,7 +27,11 @@ try {
   }
   fs.writeFileSync(indexPath, htmlContent);
   console.log(`Created ${indexPath}`);
+
+  // Create .nojekyll to disable Jekyll on GitHub Pages
+  fs.writeFileSync(noJekyllPath, "");
+  console.log(`Created ${noJekyllPath}`);
 } catch (error) {
-  console.error("Error creating index.html:", error);
+  console.error("Error creating index.html or .nojekyll:", error);
   process.exit(1);
 }
