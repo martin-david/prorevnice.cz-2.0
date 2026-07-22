@@ -30,18 +30,14 @@ function Index() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden">
-        <div
-          className="absolute inset-0 -z-10 bg-cover bg-center"
-          style={{ backgroundImage: `url(${panorama})` }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-primary/70 via-primary/50 to-primary/80"
-          aria-hidden
+      <section className="relative isolate overflow-hidden bg-primary">
+        <img
+          src={panorama}
+          alt="Panorama Řevnic — Starostové a nezávislí, Pro Řevnice"
+          className="aspect-[940/198] w-full object-cover object-center"
         />
 
-        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-32 lg:py-40">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/85">
             Starostové a nezávislí
           </p>
