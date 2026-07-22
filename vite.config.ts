@@ -7,14 +7,14 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [tailwindcss(), react(), tsconfigPaths()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+plugins: [tailwindcss(), react(), tsconfigPaths()],
+resolve: {
+  alias: {
+    "@": path.resolve(__dirname, "./src"),
   },
-  build: {
-    outDir: "dist",
-    sourcemap: false,
-  },
+},
+build: {
+  outDir: "dist",
+  sourcemap: false,
+},
 });
