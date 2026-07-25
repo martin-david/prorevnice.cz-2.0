@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { programTopics, programClosingVision, slugify } from "@/lib/program";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/program/")({
   head: () => ({
@@ -13,9 +14,9 @@ export const Route = createFileRoute("/program/")({
       },
       { property: "og:title", content: "Volební program — Pro Řevnice" },
       { property: "og:description", content: "Konkrétní priority pro další čtyři roky." },
-      { property: "og:url", content: "/program" },
+      { property: "og:url", content: absoluteUrl("/program") },
     ],
-    links: [{ rel: "canonical", href: "/program" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/program") }],
   }),
   component: ProgramPage,
 });

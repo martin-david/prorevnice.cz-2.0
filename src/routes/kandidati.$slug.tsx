@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { User } from "lucide-react";
 
 import { getCandidateBySlug, getCandidatePhoto, slugify } from "@/lib/candidates";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/kandidati/$slug")({
   loader: ({ params }) => {
@@ -15,15 +16,16 @@ export const Route = createFileRoute("/kandidati/$slug")({
     if (!loaderData) return {};
     const title = `${loaderData.name} — Pro Řevnice`;
     const description = loaderData.fullBio[0] ?? loaderData.bio;
+    const url = absoluteUrl(`/kandidati/${slugify(loaderData.name)}`);
     return {
       meta: [
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
-        { property: "og:url", content: `/kandidati/${slugify(loaderData.name)}` },
+        { property: "og:url", content: url },
       ],
-      links: [{ rel: "canonical", href: `/kandidati/${slugify(loaderData.name)}` }],
+      links: [{ rel: "canonical", href: url }],
     };
   },
   component: KandidatDetailPage,
