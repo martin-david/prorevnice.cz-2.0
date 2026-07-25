@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
-            <img src={stanLogo} alt="" className="h-8 w-8" />
+            <img src={stanLogo} alt="" className="h-7 w-auto object-contain" />
             <div>
               <div className="font-display text-base font-semibold text-primary">Pro Řevnice</div>
               <div className="text-xs text-muted-foreground">Starostové a nezávislí</div>
