@@ -14,6 +14,7 @@ import { Route as ClankyRouteImport } from './routes/clanky'
 import { Route as HodnoceniRouteImport } from './routes/hodnoceni'
 import { Route as KandidatiRouteImport } from './routes/kandidati'
 import { Route as ProgramRouteImport } from './routes/program'
+import { Route as ClankyIndexRouteImport } from './routes/clanky.index'
 import { Route as ClankySlugRouteImport } from './routes/clanky.$slug'
 import { Route as KandidatiIndexRouteImport } from './routes/kandidati.index'
 import { Route as KandidatiSlugRouteImport } from './routes/kandidati.$slug'
@@ -44,6 +45,11 @@ const ProgramRoute = ProgramRouteImport.update({
   id: '/program',
   path: '/program',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ClankyIndexRoute = ClankyIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ClankyRoute,
 } as any)
 const ClankySlugRoute = ClankySlugRouteImport.update({
   id: '/$slug',
@@ -80,16 +86,17 @@ export interface FileRoutesByFullPath {
   '/clanky/$slug': typeof ClankySlugRoute
   '/kandidati/$slug': typeof KandidatiSlugRoute
   '/program/$slug': typeof ProgramSlugRoute
+  '/clanky/': typeof ClankyIndexRoute
   '/kandidati/': typeof KandidatiIndexRoute
   '/program/': typeof ProgramIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/clanky': typeof ClankyRouteWithChildren
   '/hodnoceni': typeof HodnoceniRoute
   '/clanky/$slug': typeof ClankySlugRoute
   '/kandidati/$slug': typeof KandidatiSlugRoute
   '/program/$slug': typeof ProgramSlugRoute
+  '/clanky': typeof ClankyIndexRoute
   '/kandidati': typeof KandidatiIndexRoute
   '/program': typeof ProgramIndexRoute
 }
@@ -103,6 +110,7 @@ export interface FileRoutesById {
   '/clanky/$slug': typeof ClankySlugRoute
   '/kandidati/$slug': typeof KandidatiSlugRoute
   '/program/$slug': typeof ProgramSlugRoute
+  '/clanky/': typeof ClankyIndexRoute
   '/kandidati/': typeof KandidatiIndexRoute
   '/program/': typeof ProgramIndexRoute
 }
@@ -117,16 +125,17 @@ export interface FileRouteTypes {
     | '/clanky/$slug'
     | '/kandidati/$slug'
     | '/program/$slug'
+    | '/clanky/'
     | '/kandidati/'
     | '/program/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/clanky'
     | '/hodnoceni'
     | '/clanky/$slug'
     | '/kandidati/$slug'
     | '/program/$slug'
+    | '/clanky'
     | '/kandidati'
     | '/program'
   id:
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/clanky/$slug'
     | '/kandidati/$slug'
     | '/program/$slug'
+    | '/clanky/'
     | '/kandidati/'
     | '/program/'
   fileRoutesById: FileRoutesById
@@ -188,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clanky/': {
+      id: '/clanky/'
+      path: '/'
+      fullPath: '/clanky/'
+      preLoaderRoute: typeof ClankyIndexRouteImport
+      parentRoute: typeof ClankyRoute
+    }
     '/clanky/$slug': {
       id: '/clanky/$slug'
       path: '/$slug'
@@ -228,10 +245,12 @@ declare module '@tanstack/react-router' {
 
 interface ClankyRouteChildren {
   ClankySlugRoute: typeof ClankySlugRoute
+  ClankyIndexRoute: typeof ClankyIndexRoute
 }
 
 const ClankyRouteChildren: ClankyRouteChildren = {
   ClankySlugRoute: ClankySlugRoute,
+  ClankyIndexRoute: ClankyIndexRoute,
 }
 
 const ClankyRouteWithChildren =
