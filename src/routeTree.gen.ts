@@ -14,6 +14,7 @@ import { Route as ClankyRouteImport } from './routes/clanky'
 import { Route as HodnoceniRouteImport } from './routes/hodnoceni'
 import { Route as KandidatiRouteImport } from './routes/kandidati'
 import { Route as ProgramRouteImport } from './routes/program'
+import { Route as KandidatiSlugRouteImport } from './routes/kandidati.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,42 +41,69 @@ const ProgramRoute = ProgramRouteImport.update({
   path: '/program',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KandidatiSlugRoute = KandidatiSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => KandidatiRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/clanky': typeof ClankyRoute
   '/hodnoceni': typeof HodnoceniRoute
-  '/kandidati': typeof KandidatiRoute
+  '/kandidati': typeof KandidatiRouteWithChildren
   '/program': typeof ProgramRoute
+  '/kandidati/$slug': typeof KandidatiSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/clanky': typeof ClankyRoute
   '/hodnoceni': typeof HodnoceniRoute
-  '/kandidati': typeof KandidatiRoute
+  '/kandidati': typeof KandidatiRouteWithChildren
   '/program': typeof ProgramRoute
+  '/kandidati/$slug': typeof KandidatiSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/clanky': typeof ClankyRoute
   '/hodnoceni': typeof HodnoceniRoute
-  '/kandidati': typeof KandidatiRoute
+  '/kandidati': typeof KandidatiRouteWithChildren
   '/program': typeof ProgramRoute
+  '/kandidati/$slug': typeof KandidatiSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/clanky' | '/hodnoceni' | '/kandidati' | '/program'
+  fullPaths:
+    | '/'
+    | '/clanky'
+    | '/hodnoceni'
+    | '/kandidati'
+    | '/program'
+    | '/kandidati/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/clanky' | '/hodnoceni' | '/kandidati' | '/program'
-  id: '__root__' | '/' | '/clanky' | '/hodnoceni' | '/kandidati' | '/program'
+  to:
+    | '/'
+    | '/clanky'
+    | '/hodnoceni'
+    | '/kandidati'
+    | '/program'
+    | '/kandidati/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/clanky'
+    | '/hodnoceni'
+    | '/kandidati'
+    | '/program'
+    | '/kandidati/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ClankyRoute: typeof ClankyRoute
   HodnoceniRoute: typeof HodnoceniRoute
-  KandidatiRoute: typeof KandidatiRoute
+  KandidatiRoute: typeof KandidatiRouteWithChildren
   ProgramRoute: typeof ProgramRoute
 }
 
@@ -116,26 +144,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kandidati/$slug': {
+      id: '/kandidati/$slug'
+      path: '/$slug'
+      fullPath: '/kandidati/$slug'
+      preLoaderRoute: typeof KandidatiSlugRouteImport
+      parentRoute: typeof KandidatiRoute
+    }
   }
 }
+
+interface KandidatiRouteChildren {
+  KandidatiSlugRoute: typeof KandidatiSlugRoute
+}
+
+const KandidatiRouteChildren: KandidatiRouteChildren = {
+  KandidatiSlugRoute: KandidatiSlugRoute,
+}
+
+const KandidatiRouteWithChildren = KandidatiRoute._addFileChildren(
+  KandidatiRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClankyRoute: ClankyRoute,
   HodnoceniRoute: HodnoceniRoute,
-  KandidatiRoute: KandidatiRoute,
+  KandidatiRoute: KandidatiRouteWithChildren,
   ProgramRoute: ProgramRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

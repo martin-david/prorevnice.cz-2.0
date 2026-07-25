@@ -1,17 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { User } from "lucide-react";
 
-// Eagerly import every candidate photo from src/assets so Vite bundles, hashes and
-// copies them into the production build. Keyed by filename (e.g. "Libor Kvasnička.jpg")
-// so candidate entries below can reference photos by their plain filename.
-const photoModules = import.meta.glob("/src/assets/*.{jpg,jpeg,png}", {
-  eager: true,
-  import: "default",
-}) as Record<string, string>;
-
-const photos: Record<string, string> = Object.fromEntries(
-  Object.entries(photoModules).map(([path, url]) => [path.replace("/src/assets/", ""), url]),
-);
+import { candidates, getCandidatePhoto, slugify } from "@/lib/candidates";
 
 export const Route = createFileRoute("/kandidati")({
   head: () => ({
@@ -31,122 +21,6 @@ export const Route = createFileRoute("/kandidati")({
   component: KandidatiPage,
 });
 
-type Candidate = {
-  order: number;
-  name: string;
-  role?: string;
-  bio: string;
-  photo?: string;
-};
-
-const candidates: Candidate[] = [
-  {
-    order: 1,
-    name: "Libor Kvasnička",
-    role: "Lídr kandidátky · starosta",
-    bio: "Podnikatel v oboru maloobchodní prodej, provozovatel pěstitelské pálenice a moštárny. Právě v zastupitelstvu pracuji 28 let, třikrát byl radním a jedno období starostou. Dlouhodobě pracuji ve finančním výboru a věnuji se financím, energetice a problematice životního prostředí.",
-    photo: "Libor Kvasnička.jpg",
-  },
-  {
-    order: 2,
-    name: "Ing. Kateřina Hlaváčková",
-    role: "Místostarostka",
-    bio: "Finanční manažerka v oboru evropských dotací. Druhé volební období působím jako zastupitelka města a členka rady. Pracuji ve finančním výboru a předsedám komisi životního prostředí. Prioritou je volnočasové vyžití pro starší děti a mládež.",
-    photo: "Kateřina Hlaváčková (Šupáčková).png",
-  },
-  {
-    order: 3,
-    name: "Mgr. Martina Pražská",
-    role: "Zastupitelka",
-    bio: "Středoškolská učitelka, místopředsedkyně Mysliveckého spolku Řevnice a turistického spolku Brdské hory. Prioritou je klidný charakter našeho městečka s dostatkem zeleně, dobrá dopravní dostupnost a podpora místních spolků.",
-    photo: "Martina Pražská (Březinová).jpg",
-  },
-  {
-    order: 4,
-    name: "Matěj Krofta",
-    role: "Kandidát",
-    bio: "Student Univerzity Karlovy, administrátor projektů a personalista. Zaměřuji se na oblast kultury, vzdělávání a práci s dětmi a mládeží. Chci, aby Řevnice byly pro mladé lidi lákavé a přitažlivé s kvalitní dopravou a dostupným bydlením.",
-    photo: "Matěj Krofta.jpg",
-  },
-  {
-    order: 5,
-    name: "Ing. Jan Lojda",
-    role: "Kandidát",
-    bio: "Velkým benefitem Řevnic je jedinečná okolní krajina. Snažím se zpřístupnit tyto přínosy občanům, realizoval jsem naučnou stezku Burešovka a vzdělávací akce v lese. Rád bych navázal na tuto činnost a využil své zkušenosti.",
-    photo: "Jan Lojda.jpg",
-  },
-  {
-    order: 6,
-    name: "Ing. Jakub Veselka",
-    role: "Kandidát",
-    bio: "Konzultant v oblasti energetiky, udržitelnosti budov a projektového řízení. V Řevnicích žijeme již více než osm let. Kandidaturu vnímám jako příležitost vrátit Řevnicím něco z toho, co nám za ta léta daly a přispět k jejich dalšímu rozvoji.",
-    photo: "Jakub Veselka.jpg",
-  },
-  {
-    order: 7,
-    name: "Ing. Jiří Buchal",
-    role: "Kandidát",
-    bio: "Podnikatel, investor, manažer. Žiji od narození v Řevnicích a vychovávám 4 děti. Zastupitelem jsem byl 12 let. Chci se věnovat podpoře mládeže a projektům na podporu bydlení. Řevnice potřebují omladit a vytvořit podmínky pro rodiny.",
-    photo: "Jiří Buchal.jpg",
-  },
-  {
-    order: 8,
-    name: "Bc. Ondřej Lánský",
-    role: "Kandidát",
-    bio: "Rodák ze Řevnic, věnuji se odpadovému hospodářství a ochranu přírody. Zaměřuji se na ochranu a rozvoj městských lesů, podporu biodiverzity a zadržování vody v krajině. Chci zachovat jedinečný přírodní charakter Řevnic.",
-    photo: "Ondřej Lánský.jpg",
-  },
-  {
-    order: 9,
-    name: "RNDr. Petr Čermák",
-    role: "Kandidát",
-    bio: "Fyzik a vysokoškolský pedagog na Matfyzu. V Řevnicích vedím dětské kroužky robotiky a podílím se na provozu místní robotické dílny. Chci přinést věcný, racionální a hospodárný přístup do komunální politiky.",
-    photo: "Petr Čermák.jpg",
-  },
-  {
-    order: 10,
-    name: "Milan Adam",
-    role: "Kandidát",
-    bio: "Manažer zahraničního prodeje ve společnosti Sony Music Entertainment. V Řevnicích žiji již 60 let. Město dokonale spojuje klidný život v přírodě s výhodami blízkosti Prahy. Chci zachovat Řevnice jako kvalitní bydlení pro další generace.",
-    photo: "Milan Adam.jpg",
-  },
-  {
-    order: 11,
-    name: "Karel Vyleta",
-    role: "Kandidát",
-    bio: "Prioritou je dotáhnout revitalizaci náměstí. Pozornost věnuji novému podjezdu, který pomůže zvýšit plynulost dopravy. Důležité je řešit prostor bývalé Eurovie a každodenní chod města - údržba veřejných prostranství a komunikací.",
-    photo: "Karel Vyleta.jpg",
-  },
-  {
-    order: 12,
-    name: "Ing. Roman Vejmelka",
-    role: "Kandidát",
-    bio: "Celý život se pohybuji ve stavebnictví jako projektant, stavitel i developer. Za 25 let v Řevnicích jsem vnímám krási i bolístek našeho města. Chci se zasadit o rozumný stavební rozvoj Řevnic a odmítám zakonzervování současného stavu.",
-    photo: "Roma Vejmelka.png",
-  },
-  {
-    order: 13,
-    name: "Ing. Jan Šimůnek",
-    role: "Kandidát",
-    bio: "Projektový manažer stavebně-investičních záměrů. Do Řevnic jsem se přestěhoval před 32 lety. Jedno období jsem působil v zastupitelstvu a architektonické komisi. Chci usilovat o efektivnější a rychlejší přípravu a realizaci projektů.",
-    photo: "Jan Šimůnek.jpg",
-  },
-  {
-    order: 14,
-    name: "Milan Bělohlávek",
-    role: "Kandidát",
-    bio: "Řemeslník, v Řevnicích žiji 17 let. Jako místní řemeslník znám potřeby a reálné problémy obyvatel z první ruky. Když nestojím na střeše, potkáte mě na kole nebo v horách. Chci, aby Řevnice byly bezpečným a aktivním místem pro život.",
-    photo: "Milan Bělohlávek.jpg",
-  },
-  {
-    order: 15,
-    name: "Anna Doležalová",
-    role: "Kandidátka",
-    bio: "Podnikatelka, trenérka jezdectví. V Řevnicích žiji celý svůj život, stejně jako celá moje rodina. S mou maminkou provozujeme dětskou herničku Fabiánek. Chci se zasadit o to, aby se nám tady všem žilo ještě lépe.",
-    photo: "Anna Doležalová (Karasová).jpg",
-  },
-];
-
 function KandidatiPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
@@ -162,34 +36,39 @@ function KandidatiPage() {
       </header>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {candidates.map((c) => (
-          <article
-            key={c.order}
-            className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:border-primary/30 hover:shadow-md"
-          >
-            <div className="relative aspect-[4/5] w-full bg-surface">
-              {c.photo && photos[c.photo] ? (
-                <img src={photos[c.photo]} alt={c.name} className="h-full w-full object-cover" />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center text-muted-foreground/60">
-                  <User className="h-16 w-16" />
+        {candidates.map((c) => {
+          const photoUrl = getCandidatePhoto(c.photo);
+          return (
+            <Link
+              key={c.order}
+              to="/kandidati/$slug"
+              params={{ slug: slugify(c.name) }}
+              className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:border-primary/30 hover:shadow-md"
+            >
+              <div className="relative aspect-[4/5] w-full bg-surface">
+                {photoUrl ? (
+                  <img src={photoUrl} alt={c.name} className="h-full w-full object-cover" />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center text-muted-foreground/60">
+                    <User className="h-16 w-16" />
+                  </div>
+                )}
+                <div className="absolute left-3 top-3 inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-primary px-2 text-sm font-semibold text-primary-foreground">
+                  {c.order}
                 </div>
-              )}
-              <div className="absolute left-3 top-3 inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-primary px-2 text-sm font-semibold text-primary-foreground">
-                {c.order}
               </div>
-            </div>
-            <div className="p-5">
-              <div className="font-display text-lg font-semibold text-foreground">{c.name}</div>
-              {c.role && (
-                <div className="mt-0.5 text-xs font-medium uppercase tracking-wider text-primary">
-                  {c.role}
-                </div>
-              )}
-              <p className="mt-3 text-sm text-muted-foreground">{c.bio}</p>
-            </div>
-          </article>
-        ))}
+              <div className="p-5">
+                <div className="font-display text-lg font-semibold text-foreground">{c.name}</div>
+                {c.role && (
+                  <div className="mt-0.5 text-xs font-medium uppercase tracking-wider text-primary">
+                    {c.role}
+                  </div>
+                )}
+                <p className="mt-3 text-sm text-muted-foreground">{c.bio}</p>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
