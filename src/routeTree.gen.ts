@@ -16,6 +16,8 @@ import { Route as KandidatiRouteImport } from './routes/kandidati'
 import { Route as ProgramRouteImport } from './routes/program'
 import { Route as KandidatiIndexRouteImport } from './routes/kandidati.index'
 import { Route as KandidatiSlugRouteImport } from './routes/kandidati.$slug'
+import { Route as ProgramIndexRouteImport } from './routes/program.index'
+import { Route as ProgramSlugRouteImport } from './routes/program.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,23 +54,36 @@ const KandidatiSlugRoute = KandidatiSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => KandidatiRoute,
 } as any)
+const ProgramIndexRoute = ProgramIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProgramRoute,
+} as any)
+const ProgramSlugRoute = ProgramSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProgramRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/clanky': typeof ClankyRoute
   '/hodnoceni': typeof HodnoceniRoute
   '/kandidati': typeof KandidatiRouteWithChildren
-  '/program': typeof ProgramRoute
+  '/program': typeof ProgramRouteWithChildren
   '/kandidati/$slug': typeof KandidatiSlugRoute
+  '/program/$slug': typeof ProgramSlugRoute
   '/kandidati/': typeof KandidatiIndexRoute
+  '/program/': typeof ProgramIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/clanky': typeof ClankyRoute
   '/hodnoceni': typeof HodnoceniRoute
-  '/program': typeof ProgramRoute
   '/kandidati/$slug': typeof KandidatiSlugRoute
+  '/program/$slug': typeof ProgramSlugRoute
   '/kandidati': typeof KandidatiIndexRoute
+  '/program': typeof ProgramIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -76,9 +91,11 @@ export interface FileRoutesById {
   '/clanky': typeof ClankyRoute
   '/hodnoceni': typeof HodnoceniRoute
   '/kandidati': typeof KandidatiRouteWithChildren
-  '/program': typeof ProgramRoute
+  '/program': typeof ProgramRouteWithChildren
   '/kandidati/$slug': typeof KandidatiSlugRoute
+  '/program/$slug': typeof ProgramSlugRoute
   '/kandidati/': typeof KandidatiIndexRoute
+  '/program/': typeof ProgramIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,15 +106,18 @@ export interface FileRouteTypes {
     | '/kandidati'
     | '/program'
     | '/kandidati/$slug'
+    | '/program/$slug'
     | '/kandidati/'
+    | '/program/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/clanky'
     | '/hodnoceni'
-    | '/program'
     | '/kandidati/$slug'
+    | '/program/$slug'
     | '/kandidati'
+    | '/program'
   id:
     | '__root__'
     | '/'
@@ -106,7 +126,9 @@ export interface FileRouteTypes {
     | '/kandidati'
     | '/program'
     | '/kandidati/$slug'
+    | '/program/$slug'
     | '/kandidati/'
+    | '/program/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -114,7 +136,7 @@ export interface RootRouteChildren {
   ClankyRoute: typeof ClankyRoute
   HodnoceniRoute: typeof HodnoceniRoute
   KandidatiRoute: typeof KandidatiRouteWithChildren
-  ProgramRoute: typeof ProgramRoute
+  ProgramRoute: typeof ProgramRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -168,6 +190,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KandidatiSlugRouteImport
       parentRoute: typeof KandidatiRoute
     }
+    '/program/': {
+      id: '/program/'
+      path: '/'
+      fullPath: '/program/'
+      preLoaderRoute: typeof ProgramIndexRouteImport
+      parentRoute: typeof ProgramRoute
+    }
+    '/program/$slug': {
+      id: '/program/$slug'
+      path: '/$slug'
+      fullPath: '/program/$slug'
+      preLoaderRoute: typeof ProgramSlugRouteImport
+      parentRoute: typeof ProgramRoute
+    }
   }
 }
 
@@ -185,12 +221,25 @@ const KandidatiRouteWithChildren = KandidatiRoute._addFileChildren(
   KandidatiRouteChildren,
 )
 
+interface ProgramRouteChildren {
+  ProgramSlugRoute: typeof ProgramSlugRoute
+  ProgramIndexRoute: typeof ProgramIndexRoute
+}
+
+const ProgramRouteChildren: ProgramRouteChildren = {
+  ProgramSlugRoute: ProgramSlugRoute,
+  ProgramIndexRoute: ProgramIndexRoute,
+}
+
+const ProgramRouteWithChildren =
+  ProgramRoute._addFileChildren(ProgramRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClankyRoute: ClankyRoute,
   HodnoceniRoute: HodnoceniRoute,
   KandidatiRoute: KandidatiRouteWithChildren,
-  ProgramRoute: ProgramRoute,
+  ProgramRoute: ProgramRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
