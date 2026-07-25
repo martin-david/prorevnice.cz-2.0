@@ -14,6 +14,7 @@ import { Route as ClankyRouteImport } from './routes/clanky'
 import { Route as HodnoceniRouteImport } from './routes/hodnoceni'
 import { Route as KandidatiRouteImport } from './routes/kandidati'
 import { Route as ProgramRouteImport } from './routes/program'
+import { Route as ClankySlugRouteImport } from './routes/clanky.$slug'
 import { Route as KandidatiIndexRouteImport } from './routes/kandidati.index'
 import { Route as KandidatiSlugRouteImport } from './routes/kandidati.$slug'
 import { Route as ProgramIndexRouteImport } from './routes/program.index'
@@ -44,6 +45,11 @@ const ProgramRoute = ProgramRouteImport.update({
   path: '/program',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClankySlugRoute = ClankySlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ClankyRoute,
+} as any)
 const KandidatiIndexRoute = KandidatiIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -67,10 +73,11 @@ const ProgramSlugRoute = ProgramSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/clanky': typeof ClankyRoute
+  '/clanky': typeof ClankyRouteWithChildren
   '/hodnoceni': typeof HodnoceniRoute
   '/kandidati': typeof KandidatiRouteWithChildren
   '/program': typeof ProgramRouteWithChildren
+  '/clanky/$slug': typeof ClankySlugRoute
   '/kandidati/$slug': typeof KandidatiSlugRoute
   '/program/$slug': typeof ProgramSlugRoute
   '/kandidati/': typeof KandidatiIndexRoute
@@ -78,8 +85,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/clanky': typeof ClankyRoute
+  '/clanky': typeof ClankyRouteWithChildren
   '/hodnoceni': typeof HodnoceniRoute
+  '/clanky/$slug': typeof ClankySlugRoute
   '/kandidati/$slug': typeof KandidatiSlugRoute
   '/program/$slug': typeof ProgramSlugRoute
   '/kandidati': typeof KandidatiIndexRoute
@@ -88,10 +96,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/clanky': typeof ClankyRoute
+  '/clanky': typeof ClankyRouteWithChildren
   '/hodnoceni': typeof HodnoceniRoute
   '/kandidati': typeof KandidatiRouteWithChildren
   '/program': typeof ProgramRouteWithChildren
+  '/clanky/$slug': typeof ClankySlugRoute
   '/kandidati/$slug': typeof KandidatiSlugRoute
   '/program/$slug': typeof ProgramSlugRoute
   '/kandidati/': typeof KandidatiIndexRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/hodnoceni'
     | '/kandidati'
     | '/program'
+    | '/clanky/$slug'
     | '/kandidati/$slug'
     | '/program/$slug'
     | '/kandidati/'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
     | '/'
     | '/clanky'
     | '/hodnoceni'
+    | '/clanky/$slug'
     | '/kandidati/$slug'
     | '/program/$slug'
     | '/kandidati'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
     | '/hodnoceni'
     | '/kandidati'
     | '/program'
+    | '/clanky/$slug'
     | '/kandidati/$slug'
     | '/program/$slug'
     | '/kandidati/'
@@ -133,7 +145,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ClankyRoute: typeof ClankyRoute
+  ClankyRoute: typeof ClankyRouteWithChildren
   HodnoceniRoute: typeof HodnoceniRoute
   KandidatiRoute: typeof KandidatiRouteWithChildren
   ProgramRoute: typeof ProgramRouteWithChildren
@@ -176,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clanky/$slug': {
+      id: '/clanky/$slug'
+      path: '/$slug'
+      fullPath: '/clanky/$slug'
+      preLoaderRoute: typeof ClankySlugRouteImport
+      parentRoute: typeof ClankyRoute
+    }
     '/kandidati/': {
       id: '/kandidati/'
       path: '/'
@@ -207,6 +226,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ClankyRouteChildren {
+  ClankySlugRoute: typeof ClankySlugRoute
+}
+
+const ClankyRouteChildren: ClankyRouteChildren = {
+  ClankySlugRoute: ClankySlugRoute,
+}
+
+const ClankyRouteWithChildren =
+  ClankyRoute._addFileChildren(ClankyRouteChildren)
+
 interface KandidatiRouteChildren {
   KandidatiSlugRoute: typeof KandidatiSlugRoute
   KandidatiIndexRoute: typeof KandidatiIndexRoute
@@ -236,7 +266,7 @@ const ProgramRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ClankyRoute: ClankyRoute,
+  ClankyRoute: ClankyRouteWithChildren,
   HodnoceniRoute: HodnoceniRoute,
   KandidatiRoute: KandidatiRouteWithChildren,
   ProgramRoute: ProgramRouteWithChildren,
