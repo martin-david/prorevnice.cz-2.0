@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import panorama from "@/assets/main logo.jpg";
 import { FacebookEmbed } from "@/components/FacebookEmbed";
 import { ArrowRight, Users, ClipboardCheck, FileText, Newspaper } from "lucide-react";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,11 +18,11 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Otevřená a odpovědná politika pro Řevnice.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: absoluteUrl("/") },
       { property: "og:image", content: panorama },
       { name: "twitter:image", content: panorama },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
   component: Index,
 });

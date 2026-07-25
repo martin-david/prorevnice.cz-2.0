@@ -3,6 +3,7 @@ import { Calendar } from "lucide-react";
 
 import { getArticleBySlug } from "@/lib/articles";
 import type { ArticleBlock } from "@/lib/articles";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/clanky/$slug")({
   loader: ({ params }) => {
@@ -15,15 +16,16 @@ export const Route = createFileRoute("/clanky/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) return {};
     const title = `${loaderData.title} — Články — Pro Řevnice`;
+    const url = absoluteUrl(`/clanky/${loaderData.slug}`);
     return {
       meta: [
         { title },
         { name: "description", content: loaderData.excerpt },
         { property: "og:title", content: title },
         { property: "og:description", content: loaderData.excerpt },
-        { property: "og:url", content: `/clanky/${loaderData.slug}` },
+        { property: "og:url", content: url },
       ],
-      links: [{ rel: "canonical", href: `/clanky/${loaderData.slug}` }],
+      links: [{ rel: "canonical", href: url }],
     };
   },
   component: ArticleDetailPage,

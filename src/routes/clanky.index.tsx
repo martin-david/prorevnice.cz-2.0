@@ -3,6 +3,7 @@ import { FacebookEmbed } from "@/components/FacebookEmbed";
 import { Calendar } from "lucide-react";
 
 import { articles } from "@/lib/articles";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/clanky/")({
   head: () => ({
@@ -14,9 +15,9 @@ export const Route = createFileRoute("/clanky/")({
       },
       { property: "og:title", content: "Články — Pro Řevnice" },
       { property: "og:description", content: "Aktuality a komentáře z dění ve městě." },
-      { property: "og:url", content: "/clanky" },
+      { property: "og:url", content: absoluteUrl("/clanky") },
     ],
-    links: [{ rel: "canonical", href: "/clanky" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/clanky") }],
   }),
   component: ClankyPage,
 });

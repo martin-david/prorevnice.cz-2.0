@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pro Řevnice</title>
+    <!--
+      GitHub Pages has no server-side rewrite rule, so a direct request or a
+      page reload on a client-side route (e.g. /kandidati/libor-kvasnicka)
+      has no matching file on disk and GitHub Pages serves this 404.html
+      instead. This script encodes the requested path/query/hash into a
+      query string and redirects to the real index.html, which restores the
+      original URL (see the matching decode script in index.html) before the
+      client-side router mounts.
+
+      Based on the well-known GitHub Pages SPA redirect technique:
+      https://github.com/rafgraph/spa-github-pages
+    -->
+    <script>
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          "/?/" +
+          l.pathname.slice(1).replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

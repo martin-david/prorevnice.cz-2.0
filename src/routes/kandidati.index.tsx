@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { User } from "lucide-react";
 
 import { candidates, getCandidatePhoto, slugify } from "@/lib/candidates";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/kandidati/")({
   head: () => ({
@@ -14,9 +15,9 @@ export const Route = createFileRoute("/kandidati/")({
       },
       { property: "og:title", content: "Kandidáti — Pro Řevnice" },
       { property: "og:description", content: "Lidé, kteří chtějí pracovat pro Řevnice." },
-      { property: "og:url", content: "/kandidati" },
+      { property: "og:url", content: absoluteUrl("/kandidati") },
     ],
-    links: [{ rel: "canonical", href: "/kandidati" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/kandidati") }],
   }),
   component: KandidatiPage,
 });

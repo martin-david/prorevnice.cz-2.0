@@ -13,6 +13,7 @@ import {
   Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/hodnoceni")({
   head: () => ({
@@ -28,9 +29,9 @@ export const Route = createFileRoute("/hodnoceni")({
         property: "og:description",
         content: "Detailní vyhodnocení plnění volebního programu 2022–2026.",
       },
-      { property: "og:url", content: "/hodnoceni" },
+      { property: "og:url", content: absoluteUrl("/hodnoceni") },
     ],
-    links: [{ rel: "canonical", href: "/hodnoceni" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/hodnoceni") }],
   }),
   component: HodnoceniPage,
 });

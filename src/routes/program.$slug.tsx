@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { getProgramTopicBySlug, slugify } from "@/lib/program";
 import type { ProgramBlock } from "@/lib/program";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/program/$slug")({
   loader: ({ params }) => {
@@ -15,15 +16,16 @@ export const Route = createFileRoute("/program/$slug")({
     if (!loaderData) return {};
     const title = `${loaderData.title} — Volební program — Pro Řevnice`;
     const description = loaderData.summary[0] ?? loaderData.title;
+    const url = absoluteUrl(`/program/${slugify(loaderData.title)}`);
     return {
       meta: [
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
-        { property: "og:url", content: `/program/${slugify(loaderData.title)}` },
+        { property: "og:url", content: url },
       ],
-      links: [{ rel: "canonical", href: `/program/${slugify(loaderData.title)}` }],
+      links: [{ rel: "canonical", href: url }],
     };
   },
   component: ProgramTopicDetailPage,
