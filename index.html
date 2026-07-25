@@ -5,7 +5,27 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pro Řevnice</title>
-    <script type="module" crossorigin src="/assets/index-C5hCy3sD.js"></script>
+    <!--
+      Counterpart to public/404.html: if the browser was bounced here via
+      the GitHub Pages SPA redirect (URL contains "/?/<original-path>"),
+      restore the original clean URL before the client-side router mounts,
+      so it can render the correct route on direct navigation / reload.
+    -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, "", l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+    <script type="module" crossorigin src="/assets/index-Df-cot5d.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/styles-C26RiwhX.css">
   </head>
   <body>
