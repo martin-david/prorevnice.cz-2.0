@@ -1,6 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { FacebookEmbed } from "@/components/FacebookEmbed";
 import { Calendar } from "lucide-react";
+
+import { articles } from "@/lib/articles";
 
 export const Route = createFileRoute("/clanky")({
   head: () => ({
@@ -18,37 +20,6 @@ export const Route = createFileRoute("/clanky")({
   }),
   component: ClankyPage,
 });
-
-type Article = {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-};
-
-const articles: Article[] = [
-  {
-    slug: "uvodni-clanek",
-    title: "Pokračujeme v práci pro Řevnice",
-    date: "2026-05-01",
-    excerpt:
-      "Krátký úvodní článek — proč znovu kandidujeme, na co navazujeme a co považujeme za nejdůležitější v příštích čtyřech letech.",
-  },
-  {
-    slug: "doprava-2026",
-    title: "Doprava v Řevnicích: co dál",
-    date: "2026-04-14",
-    excerpt:
-      "Bezpečnější cesty do škol, parkování v centru a údržba komunikací. Shrnujeme, co se povedlo a co je před námi.",
-  },
-  {
-    slug: "verejny-prostor",
-    title: "Veřejný prostor, který má smysl",
-    date: "2026-03-28",
-    excerpt:
-      "Náměstí, okolí nádraží, zeleň a lavičky. Malé věci, které dělají velký rozdíl v každodenním životě města.",
-  },
-];
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("cs-CZ", {
@@ -74,21 +45,48 @@ function ClankyPage() {
 
       <div className="mt-12 grid gap-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
-          {articles.map((a) => (
-            <article
-              key={a.slug}
-              className="rounded-2xl border border-border bg-card p-6 transition hover:border-primary/30 hover:shadow-md"
-            >
-              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                <Calendar className="h-3.5 w-3.5" />
-                <time dateTime={a.date}>{formatDate(a.date)}</time>
-              </div>
-              <h2 className="mt-3 font-display text-2xl font-semibold text-foreground">
-                {a.title}
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.excerpt}</p>
-            </article>
-          ))}
+          {articles.map((a) => {
+            const hasDetail = Boolean(a.content);
+            const card = (
+              <>
+                <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                  <Calendar className="h-3.5 w-3.5" />
+                  <time dateTime={a.date}>{formatDate(a.date)}</time>
+                </div>
+                <h2 className="mt-3 font-display text-2xl font-semibold text-foreground">
+                  {a.title}
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.excerpt}</p>
+                {hasDetail && (
+                  <span className="mt-4 inline-block text-sm font-medium text-primary">
+                    Číst celý článek →
+                  </span>
+                )}
+              </>
+            );
+
+            if (hasDetail) {
+              return (
+                <Link
+                  key={a.slug}
+                  to="/clanky/$slug"
+                  params={{ slug: a.slug }}
+                  className="block rounded-2xl border border-border bg-card p-6 transition hover:border-primary/30 hover:shadow-md"
+                >
+                  {card}
+                </Link>
+              );
+            }
+
+            return (
+              <article
+                key={a.slug}
+                className="rounded-2xl border border-border bg-card p-6 transition hover:border-primary/30 hover:shadow-md"
+              >
+                {card}
+              </article>
+            );
+          })}
           <div className="rounded-xl border border-dashed border-border bg-surface p-6 text-sm text-muted-foreground">
             Zástupné články — pošlete texty (titulek, datum, perex, obsah) a doplníme je sem.
             Případně můžeme převzít starší články z původního webu.
