@@ -60,8 +60,8 @@ const sections: Section[] = [
       "Územní plán schválen v září 2022 a stal se závazným rámcem",
       "Komise pro územní rozvoj byla aktivní, probíhala příprava podkladů",
       "Nový Krajinný plán města – nástroj nad rámec programu",
-      "Územní studie Za Vodou – město prodloužilo povinnost vypracování do změny č.1 ÚP",
-      "Územní studie U Zámečku – město se vypořádalo se zástavbou, bude předcházet debata",
+      "Územní studie Za Vodou – město je většinovým vlastníkem všech pozemků a v současné chvíli neplánuje zástavbu ani prodej těchto pozemků. Prodloužení povinnosti vypracování studie bude zahrnuto do Změny č.1 Územního plánu.",
+      "Územní studie U Zámečku – město je většinovým vlastníkem všech pozemků a v současné chvíli neplánuje zástavbu ani prodej těchto pozemků. Zástavbě bude předcházet veřejná debata. Prodloužení povinnosti vypracování studie bude zahrnuto do Změny č.1 Územního plánu.",
       "Územní studie Pod Lesem – je zpracovávána",
       "Územní studie Za Nádražím – probíhá veřejná debata s vlastníkem",
       "Regulační plán Na Vrážce – zadání připraveno a projednáváno",
@@ -190,7 +190,6 @@ const sections: Section[] = [
     accomplished: [
       "Lesní divadlo – pravidelná údržba, kulturní akce, spolupráce ZUŠ, nový ceník",
       "Sport dětí a mládeže – pravidelné navyšování částky do grantového systému",
-      "Sportovní hala – dokončena, ocenění Stavba roku",
       "Fotbalové hřiště – problém trvá, řešení nebylo dokončeno",
     ],
     status: "partial",
