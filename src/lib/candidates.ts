@@ -41,7 +41,7 @@ export const candidates: Candidate[] = [
   {
     order: 1,
     name: "Libor Kvasnička",
-    role: "Lídr kandidátky · starosta",
+    role: "Lídr kandidátky",
     bio: "Podnikatel v oboru maloobchodní prodej, provozovatel pěstitelské pálenice a moštárny. Právě v zastupitelstvu pracuji 28 let, třikrát byl radním a jedno období starostou. Dlouhodobě pracuji ve finančním výboru a věnuji se financím, energetice a problematice životního prostředí.",
     fullBio: [
       "Podnikatel v oboru maloobchodní prodej, provozovatel pěstitelské pálenice a (opravdové) moštárny.",
@@ -55,7 +55,7 @@ export const candidates: Candidate[] = [
   {
     order: 2,
     name: "Ing. Kateřina Hlaváčková (Šupáčková)",
-    role: "Místostarostka",
+    role: "Kandidátka",
     bio: "Finanční manažerka v oboru evropských dotací. Druhé volební období působím jako zastupitelka města a členka rady. Pracuji ve finančním výboru a předsedám komisi životního prostředí. Prioritou je volnočasové vyžití pro starší děti a mládež.",
     fullBio: [
       "Státní úředník - Finanční manažerka v oboru evropských dotací na MHMP.",
