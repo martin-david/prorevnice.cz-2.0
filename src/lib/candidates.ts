@@ -218,11 +218,11 @@ export const candidates: Candidate[] = [
     order: 15,
     name: "Ing. Roman Vejmelka",
     role: "Kandidát",
-    bio: "Celý život se pohybuji ve stavebnictví jako projektant, stavitel i developer. Za 25 let v Řevnicích jsem vnímám krási i bolístek našeho města. Chci se zasadit o rozumný stavební rozvoj Řevnic a odmítám zakonzervování současného stavu.",
+    bio: "Za těch již 25 let, které žiji v Řevnicích, jsem se snažil navnímat většinu krás i bolístek našeho města. Celý život se pohybuji ve stavebnictví, a to v různých pozicích - jako projektant, stavitel i developer, a této oblasti bych se chtěl věnovat i na komunální úrovni ve prospěch Řevnic. Chci se zasadit o rozumný stavební rozvoj Řevnic, zásadně odmítám zakonzervování současného, dle mého názoru neutěšeného stavu.",
     fullBio: [
       "Za těch již 25 let, které žiji v Řevnicích, jsem se snažil navnímat většinu krás i bolístek našeho města. Celý život se pohybuji ve stavebnictví, a to v různých pozicích - jako projektant, stavitel i developer, a této oblasti bych se chtěl věnovat i na komunální úrovni ve prospěch Řevnic. Chci se zasadit o rozumný stavební rozvoj Řevnic, zásadně odmítám zakonzervování současného, dle mého názoru neutěšeného stavu.",
     ],
-    photo: "Roma Vejmelka.png",
+    photo: "Roman Vejmelka.png",
   },
 ];
 
